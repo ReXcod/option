@@ -67,8 +67,8 @@ try:
     history['Log Returns'] = np.log(history['Close'] / history['Close'].shift(1))
     hist_vol = history['Log Returns'].std() * np.sqrt(252)
     
-    st.sidebar.success(f"📍 Live Price: ${current_price:.2f}")
-    st.sidebar.info(f"📉 Hist. Volatility: {hist_vol:.2%}")
+    st.sidebar.success(f"Live Price: ${current_price:.2f}")
+    st.sidebar.info(f"Hist. Volatility: {hist_vol:.2%}")
 except:
     st.sidebar.error("Invalid Ticker")
     current_price, hist_vol = 100, 0.2
@@ -81,7 +81,7 @@ volatility_input = st.sidebar.slider("Volatility (Sigma)", 0.10, 1.50, float(his
 risk_free_input = st.sidebar.number_input("Risk-Free Rate (Decimal)", value=0.045)
 
 # --- 3. Main Dashboard Area ---
-st.title(f"⚡ {ticker_input.upper()} Options Intelligence")
+st.title(f"{ticker_input.upper()} Options Intelligence")
 st.markdown("---")
 
 # Initialize Engine
@@ -117,7 +117,7 @@ with col_b:
             st.error(f"**SIGNAL: OVERVALUED** (Premium: {pct_diff:.1f}%) — Avoid / Sell 🔴")
             st.write(f"The market is charging ${market_price}, but math says it's worth ${call_price:.2f}.")
     else:
-        st.info("👈 Enter the real-time option price from your broker to see the prediction.")
+        st.info("Enter the real-time option price from your broker to see the prediction.")
 
 st.markdown("---")
 
@@ -146,7 +146,7 @@ with col_left:
     st.pyplot(fig)
 
 with col_right:
-    st.subheader("📐 The Greeks")
+    st.subheader("The Greeks")
     st.write("Risk sensitivity metrics.")
     
     greek_data = {
